@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste-País</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18pt;
+            
+        }
+
+        p{
+            font-size: 16pt;
+        }
+        #enviar{
+            width: 100px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Você é brasileiro?</h1>
+    Insira seu nome:<input type="text" name="nome" id="nome">
+    <br>
+    Insira seu país:<input type="text" name="nac" id="nac">
+    <br>
+    <input type="submit" value="Enviar" id="enviar" onclick="verificar()">
+    <div id="resp">Aguardando...</div>
+
+
+    <script>
+        function verificar(){
+            var n = window.document.querySelector("input#nome").value;
+            var country = window.document.querySelector("input#nac").value;
+            var res = window.document.querySelector("div#resp");
+            
+            res.innerHTML = '<p>Olá, '+ n +' vamos verificar sua nacionalidade,</p> ';
+
+            if(country =="Brasil"){
+                res.innerHTML += `<p>${n}, você é brasileiro</p>`;
+            }else {
+                res.innerHTML += `<p>${n}, você é estrangeiro</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
