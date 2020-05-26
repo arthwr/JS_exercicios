@@ -1,50 +1,54 @@
 function contar(){
-    var inic = Number(document.getElementById("txtinic").value)
-    var fim = Number(document.getElementById("txtfim").value)
-    var count = Number(document.getElementById("txtpace").value)
+    var inic = document.getElementById("txtinic")
+    var fim = document.getElementById("txtfim")
+    var pace = document.getElementById("txtpace")
 
     var res = document.getElementById("resposta")
 
-    
-
-    /*do{
-        res.innerHTML = `${inic}, `
-        inic = (inic + count)
-    }while(inic <=fim) */
-
-  /*  while(inic <= fim){ 
-      &#128073
-        res.innerText = `${inic},`
-        inic = (inic + count)
-    }*/
-
-    if(inic < 0){
-        res.innerHTML = "O primeiro número tem que ser maior que 0!"
-    }else if(fim < inic){
-        res.innerHTML = "O fim tem que ser menor que o início!"
-    }else if(count == 0){
-        res.innerHTML = "O passo tem que ser diferente de 0"
+    if(inic.value.length == 0 || fim.value.length == 0 || pace.value.length == 0){
+        res.innerHTML = "Você precisa digitar todos os dados!"
     }else{  
-        res.innerHTML = `<p>Iniciou em  ${inic} </p>` 
+        var i = Number(inic.value)
+        var f = Number(fim.value)
+        var p = Number(pace.value)
+        res.innerHTML = `<p>Iniciou em  ${i} </p>` 
         res.innerHTML += "<p> Contando:" 
-        for(var i = inic;i <= fim; i += count){
-            res.innerHTML += `<p> 👍 ${i}</p>`
-            
+        if (p <= 0){
+            res.innerHTML +="<p> Passo inválido, considerando 1!"
+            p = 1
         }
-        i = (i - count)
-        res.innerHTML+= `Finalizou em ${i} ✋`
+        if(i < f){
+            //Contagem Crescente
+        for(var c = i;c <= f; c += p){
+            res.innerHTML += `<p> \u{1F449} ${c}</p>`
+
+        }
+        c = (c-p)
+        }else{
+            //Contagem regressiva
+        for (var c = i; c >= f; c -=p){
+            res.innerHTML += `<p> \u{1F449} ${c}</p>`    
+        }
+        }
+        res.innerHTML+= `Finalizou em ${c} ✋`
     }
 }
 
 function tabuada(){
-    var num = Number(document.getElementById("txtn").value)
-    var res = document.getElementById("resposta-tab")
+    var num = document.getElementById("txtn")
+    var res = document.getElementById("seltab")
 
-    res.innerHTML = `A tabuada do número: ${num}`
+    
+    if (num.value.length == 0){
+        res.innerHTML = "Por favor digite um número!"
+    }else{
+        var n = Number(num.value)
+    res.innerHTML = `A tabuada do número: ${n}`
     for(var i=0; i<=10;i++){
-        var multi = (i*num)
-        res.innerHTML += `<p>${num} x ${i} = ${multi}</p>`
-    }
+        let item = document.createElement('option')
+        item.text = `${n} x ${i} = ${i*n}` 
+        item.value = `res${i}`
+        res.appendChild(item)
+    }}
 
 }
-
